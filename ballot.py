@@ -25,9 +25,12 @@ def load_ballot_file(ballot_file_name='votos.txt'):
 def pref_matrix(qtd_candidates, vote_list, exclude_list=list()):
     """
         Cria matriz de preferências com os votos e o número de candidatos.
-        Caso haja índices na exclude_list, as linhas e colunas correspondentes ficam zeradas
+        Caso haja índices na exclude_list,
+            as linhas e colunas correspondentes ficam zeradas
         :param qtd_candidates: Quantidade de candidatos
-        :param vote_list: Lista de votos, cada item é uma lista ordenada de preferencias com os índices do candidato
+        :param vote_list: Lista de votos,
+            cada item é uma lista ordenada de preferencias com os índices
+            do candidato
         :param exclude_list: Lista de índices de candidatos a serem ignorados
 
         >>> a = pref_matrix(12, \

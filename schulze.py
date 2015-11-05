@@ -44,28 +44,30 @@ def result(qtd_candidates, strong_path_matrix, candidate_list):
 
     print('Quantidade de Vitórias:\n')
     for i in candidate_list:
-        print(i.ljust(60, '_'),
-              str(qtd_vitorias[i]), '({:.3f}%)'.format(100 * qtd_vitorias[i] / (qtd_candidates - 1)))
+        print(i.ljust(60, '_'), str(qtd_vitorias[i]),
+              '{:.3f}%'.format(100 * qtd_vitorias[i] / (qtd_candidates - 1)))
     print('\n')
 
 
-def floyd_warshall_strongest(numero_candidatos, matriz_preferencias):
-    strong_path = np.zeros((numero_candidatos, numero_candidatos), dtype=np.int)
-    for i in range(numero_candidatos):
-        for j in range(numero_candidatos):
+def floyd_warshall_strongest(num_candidatos, matriz_preferencias):
+    strong_pth = np.zeros((num_candidatos, num_candidatos), dtype=np.int)
+    for i in range(num_candidatos):
+        for j in range(num_candidatos):
             if i != j:
                 if matriz_preferencias[i, j] > matriz_preferencias[j, i]:
-                    strong_path[i, j] = matriz_preferencias[i, j]
+                    strong_pth[i, j] = matriz_preferencias[i, j]
 
-    for i in range(numero_candidatos):
-        for j in range(numero_candidatos):
+    for i in range(num_candidatos):
+        for j in range(num_candidatos):
             if i == j:
                 continue
-            for k in range(numero_candidatos):
+            for k in range(num_candidatos):
                 if i != k and j != k:
-                    strong_path[j, k] = max(strong_path[j, k], min(strong_path[j, i], strong_path[i, k]))
+                    strong_pth[j, k] = max(strong_pth[j, k],
+                                           min(strong_pth[j, i],
+                                               strong_pth[i, k]))
 
-    return strong_path
+    return strong_pth
 
 
 if __name__ == "__main__":

@@ -24,7 +24,8 @@ if __name__ == "__main__":
 
     result = sorted(result, reverse=True)
     for i in result:
-        print('{:.3f}% {}'.format(100*i[0], i[1]), ''.center(45, '_'), '{}'.format(i[2]))
+        print('{:.3f}% {}'.format(100*i[0], i[1]),
+              ''.center(45, '_'), '{}'.format(i[2]))
 
     # locks = []
     # visited_node = []
