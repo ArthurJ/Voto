@@ -1,6 +1,6 @@
 import ballot
 
-__author__ = 'arthur'
+__author__ = '@arthurj'
 
 
 if __name__ == "__main__":
