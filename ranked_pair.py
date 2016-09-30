@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     result = sorted(result, reverse=True)
     for i in result:
-        print('{:.3f}% {}'.format(100*i[0], i[1]),
+        print('{:.3%} {}'.format(i[0], i[1]),
               ''.center(45, '_'), '{}'.format(i[2]))
 
     # locks = []
