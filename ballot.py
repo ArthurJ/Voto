@@ -12,7 +12,7 @@ def load_candidates(candidates_file_name='candidatos.txt'):
     return candidatos_list
 
 
-def load_ballot_file(ballot_file_name='votos.txt'):
+def load_ballot_file(ballot_file_name='votos25.txt'):
     votos_in = open(ballot_file_name, 'r')
     votos_list = []
     for i in votos_in:

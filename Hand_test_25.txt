@@ -1,0 +1,28 @@
+Regexes de verificação:
+    ((^11,)|( 11,)).*(( 3,)|( 3$)) ---> 11 vence 3
+    ((^3,)|( 3,)).*11 ----> 3 vence 11
+
+Caso de teste: voto25.txt
+-----------------------------------------------------------
+
+Marina x Aécio Neves: 18 x 7
+
+Marina x Geraldo Alckmin: 17 x 8
+
+Marina x Cristovão Buarque: 21 x 4
+
+Marina x Dilma Roussef: 15 x 10
+
+Marina x Eduardo Jorge: 19 x 6
+
+Marina x Fernando Henrique Cardoso:  20 x 5
+
+Marina x José Maria: 18 x 7
+
+Marina x José Serra: 19 x 6
+
+Marina x Levy Fidelix: 19 x 6
+
+Marina x Luciana Genro: 15 x 10
+
+Marina x Luís Inácio Lula da Silva: 20 x 5
