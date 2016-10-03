@@ -23,9 +23,15 @@ if __name__ == "__main__":
             result.append([votos[0]/sum(votos), ordem[0], ordem[1]])
 
     result = sorted(result, reverse=True)
+
+    # TODO:
+    '''
+        Definir a lista de preferência sem as repetições, e em caso de empate entre maiorias do candidato A e B,
+        usar a referência de A versus B para decidir quem tem a preferência.
+    '''
+
     for i in result:
-        print('{:.3%} {}'.format(i[0], i[1]),
-              ''.center(45, '_'), '{}'.format(i[2]))
+        print('{:.2%} {}'.format(i[0], i[1]), '{}'.format(i[2]).rjust(45, '_'))
 
     # locks = []
     # visited_node = []
