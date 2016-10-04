@@ -22,7 +22,17 @@ def load_ballot_file(ballot_file_name='votos25.txt'):
     return votos_list
 
 
-def pref_matrix(qtd_candidates, vote_list, exclude_list=list()):
+def print_matriz(maior_valor, matriz, titulo=''):
+    maior_valor = str(len(str(maior_valor)) + 4)
+    print(titulo)
+    for row in matriz:
+        for val in row:
+            print(('{:' + maior_valor + '}').format(val), end='')
+        print()
+    print('\n\n')
+
+
+def pref_matrix(qtd_candidates, vote_list, exclude_list=list(), show_matrix=True):
     """
         Cria matriz de preferências com os votos e o número de candidatos.
         Caso haja índices na exclude_list,
@@ -52,6 +62,7 @@ def pref_matrix(qtd_candidates, vote_list, exclude_list=list()):
         (a==b).all()
         True
     """
+    maior_valor = 0
     matriz = np.zeros((qtd_candidates, qtd_candidates), dtype=np.int)
     for i in vote_list:
         excludes = []
@@ -60,7 +71,12 @@ def pref_matrix(qtd_candidates, vote_list, exclude_list=list()):
             for k in range(qtd_candidates):
                 if k not in excludes:
                     matriz[j, k] += 1
+                    maior_valor = max(maior_valor, matriz[j, k])
     for i in exclude_list:
         matriz[i] = np.zeros(qtd_candidates, dtype=np.int)
         matriz[:, i] = np.zeros(qtd_candidates, dtype=np.int)
+
+    if show_matrix:
+        print_matriz(maior_valor, matriz, titulo='Matriz de Inicial:\n')
+
     return matriz

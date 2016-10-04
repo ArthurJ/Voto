@@ -34,22 +34,15 @@ def result(qtd_candidates, strong_path_matrix, candidate_list):
             qtd_vitorias[order[0]] += 1
             maior_valor = value if value > maior_valor else maior_valor
 
-    maior_valor = str(len(str(maior_valor)) + 4)
-    print('Matriz de preferências:\n')
-    for row in strong_path_matrix:
-        for val in row:
-            print(('{:' + maior_valor + '}').format(val), end='')
-        print()
-    print('\n\n')
+    ballot.print_matriz(maior_valor, strong_path_matrix, 'Matriz de Preferência:\n')
 
-    print('Quantidade de Vitórias:\n')
+    print('Lista de Preferências:\n')
     preferencia = []
-    for i in candidate_list:
+    for j, i in enumerate(candidate_list):
         porcentagem = qtd_vitorias[i] / (qtd_candidates - 1)
-        preferencia.append(
-                (porcentagem, i.ljust(60, '_') + ' ' + str(qtd_vitorias[i]) + ' ' + '{:.3%}'.format(porcentagem)))
+        preferencia.append((porcentagem, j, i))
     preferencia = sorted(preferencia, key=lambda preferencia: preferencia[0], reverse=True)
-    [print(p[1]) for p in preferencia]
+    [print(p[1:]) for p in preferencia]
     print('\n')
 
 
@@ -58,7 +51,8 @@ def floyd_warshall_strongest(num_candidatos, matriz_preferencias):
     for i in range(num_candidatos):
         for j in range(num_candidatos):
             if i != j:
-                strong_pth[i, j] = matriz_preferencias[i, j]
+                if matriz_preferencias[i, j] > matriz_preferencias[j, i]:
+                    strong_pth[i, j] = matriz_preferencias[i, j]
 
     for i in range(num_candidatos):
         for j in range(num_candidatos):
