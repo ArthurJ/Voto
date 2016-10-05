@@ -34,7 +34,7 @@ def result(qtd_candidates, strong_path_matrix, candidate_list):
             qtd_vitorias[order[0]] += 1
             maior_valor = value if value > maior_valor else maior_valor
 
-    ballot.print_matriz(maior_valor, strong_path_matrix, 'Matriz de Preferência:\n')
+    ballot.print_matriz(maior_valor, strong_path_matrix, 'Matriz de Caminhos Fortes:\n')
 
     print('Lista de Preferências:\n')
     preferencia = []

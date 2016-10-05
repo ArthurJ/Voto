@@ -46,7 +46,7 @@ def pref_matrix(qtd_candidates, vote_list, exclude_list=list(), show_matrix=True
         >>> a = pref_matrix(12, \
             [[0], [10, 4, 2, 8, 7], [11, 9, 10, 3, 7, 2, 6, 8], \
             [1, 4, 11, 0, 9, 8, 3, 5, 10, 7, 2, 6], [11, 9, 5, 0], \
-            [3, 11, 8, 9, 6, 2, 10, 0, 1, 5, 4, 7]], [10]) ; \
+            [3, 11, 8, 9, 6, 2, 10, 0, 1, 5, 4, 7]], [10], show_matrix=False) ; \
         b = np.array([[0, 3, 3, 3, 3, 3, 3, 4, 3, 2, 0, 1], \
                   [1, 0, 1, 1, 2, 2, 1, 2, 1, 1, 0, 1], \
                   [3, 3, 0, 1, 2, 3, 3, 2, 2, 1, 0, 1],\
@@ -77,6 +77,6 @@ def pref_matrix(qtd_candidates, vote_list, exclude_list=list(), show_matrix=True
         matriz[:, i] = np.zeros(qtd_candidates, dtype=np.int)
 
     if show_matrix:
-        print_matriz(maior_valor, matriz, titulo='Matriz de Inicial:\n')
+        print_matriz(maior_valor, matriz, titulo='Matriz de Votos:\n')
 
     return matriz
