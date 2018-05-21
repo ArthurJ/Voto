@@ -10,6 +10,8 @@ from numpy import array, ones, eye, subtract
 from random import choice
 from functools import reduce
 
+from ballot import print_matriz
+
 chosen_type = object
 
 # Sendo n o número de candidatos, p=100 a quantida de números primos, teremos
@@ -104,47 +106,44 @@ def convert_2_matrix(escolhas, dim, qtd_eleitores=1):
 ## Teste para 1 cédula
 
 cedula = fiat_valid_matrix(5)                           # Cria cédula-matriz aleatória válida
-print(cedula)
+print_matriz(1, cedula, '\nCédula:')
 convertido = convert_2_number(cedula)                   # Converte em cédula-número
-print(convertido)
+print('Valor convertido em número: ', convertido)
 
 _escolhas_ = decompose(convertido)
-print(_escolhas_)                                       # Mostra os primos referentes às escolhas
+print('Primos referentes às escolhas: ', _escolhas_)    # Mostra os primos referentes às escolhas
 
 recuperado = convert_2_matrix(_escolhas_, 5)
-print(recuperado)                                       # Mostra cédula-matriz recuperada da cédula-número
+print_matriz(1, recuperado, '\nCédula recuperada: ')    # Mostra cédula-matriz recuperada da cédula-número
 
 assert np.all(recuperado == cedula)                     # Verifica se a cédula-matriz recuperada é identica à original
 
-print('\n', '#'*60, '\n')
+print('\n', '#'*60)
 
 ##########################################
 ## Teste para 1 urna
 
-for n in range(100):
-    n_candidatos = 14
-    n_eleitores = 20
+for n in range(1):
+    n_candidatos = 5
+    n_eleitores = 5 
+
+    print()
 
     cedulas = [fiat_valid_matrix(n_candidatos) for k in range(n_eleitores)]
-    print(cedulas)
+    [print_matriz(1, c, 'Cédula:') for c in cedulas]
 
     somatorio = sum(cedulas)
-    print(somatorio)
+    print_matriz(np.max(somatorio), somatorio, 'Cédulas somadas:')
 
     convertidos = [convert_2_number(cedula) for cedula in cedulas]
     urna_numerica = reduce(lambda x, y: x * y, convertidos)
-    print(urna_numerica)
-
-    # if urna_numerica < 0:  # Caso de overflow
-    #     exit(0)
+    # print(urna_numerica)
 
     votos_separados = decompose(urna_numerica)
-    print(votos_separados)
+    # print('\n', votos_separados)
 
     recuperado = convert_2_matrix(votos_separados, n_candidatos, qtd_eleitores=n_eleitores)
-    print(recuperado)
-
-    print(is_valid(recuperado, qtd_eleitores=n_eleitores))
+    print_matriz(np.max(recuperado), recuperado, 'Urna recuperada:')
 
     try:
         assert np.all(recuperado == somatorio)
@@ -155,3 +154,5 @@ for n in range(100):
         print(recuperado)
         print(n)
         raise e
+
+    print('#'*60)

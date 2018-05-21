@@ -23,13 +23,13 @@ def load_ballot_file(ballot_file_name='votos25.txt'):
 
 
 def print_matriz(maior_valor, matriz, titulo=''):
-    maior_valor = str(len(str(maior_valor)) + 4)
-    print(titulo)
+    maior_valor = len(str(maior_valor))*2+1
+    print(titulo,'\n')
     for row in matriz:
         for val in row:
-            print(('{:' + maior_valor + '}').format(val), end='')
-        print()
-    print('\n\n')
+            print(('{:' + str(maior_valor) + '}').format(val), end='')
+        print('\n'*(maior_valor-4))
+    print('\n')
 
 
 def pref_matrix(qtd_candidates, vote_list, exclude_list=list(), show_matrix=True):
